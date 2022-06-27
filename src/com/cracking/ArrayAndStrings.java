@@ -8,17 +8,20 @@ public class ArrayAndStrings {
     String str2 = "leirbag";
     isPermutation(str1, str2);*/
 
-    char[] str = "Mr John Smith ".toCharArray();
+    //char[] str = "Mr John Smith ".toCharArray();
 
     // Prints the replaced string
-    str = urlFy(str);
+    //str = urlFy(str);
 
-    for (int i = 0; i < str.length; i++) System.out.print(str[i]);
+    //for (int i = 0; i < str.length; i++) System.out.print(str[i]);
 
     /*if (ArrayAndStrings.checkUniqueChar(str)) {
         System.out.println("The String " + str + " has all unique characters");
     }else
         System.out.println("The String " + str + " has duplicate characters");*/
+
+
+    System.out.println(palindromePermutation("Tact Coa"));
 
   }
 
@@ -126,5 +129,19 @@ public class ArrayAndStrings {
     return str;
   }
 
-  //public static palindrom
+  public static boolean palindromePermutation(String string){
+
+    int [] char_count = new int[128];
+
+    for (int i = 0; i < string.length(); i++) {
+      char_count[string.charAt(i)]++;
+    }
+
+    int count = 0;
+    for (int i = 0; i < 128; i++) {
+      count += char_count[i] % 2;
+    }
+
+    return count <= 1;
+  }
 }
