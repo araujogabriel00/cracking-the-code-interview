@@ -2,26 +2,10 @@ package com.cracking;
 
 public class ArrayAndStrings {
 
+
   public static void main(String[] args) {
 
-    /*String str1 = "gabriel";
-    String str2 = "leirbag";
-    isPermutation(str1, str2);*/
-
-    //char[] str = "Mr John Smith ".toCharArray();
-
-    // Prints the replaced string
-    //str = urlFy(str);
-
-    //for (int i = 0; i < str.length; i++) System.out.print(str[i]);
-
-    /*if (ArrayAndStrings.checkUniqueChar(str)) {
-        System.out.println("The String " + str + " has all unique characters");
-    }else
-        System.out.println("The String " + str + " has duplicate characters");*/
-
-
-    System.out.println(palindromePermutation("Tact Coa"));
+    System.out.println(oneEditAway("ble", "pale"));
 
   }
 
@@ -129,9 +113,9 @@ public class ArrayAndStrings {
     return str;
   }
 
-  public static boolean palindromePermutation(String string){
+  public static boolean palindromePermutation(String string) {
 
-    int [] char_count = new int[128];
+    int[] char_count = new int[128];
 
     for (int i = 0; i < string.length(); i++) {
       char_count[string.charAt(i)]++;
@@ -143,5 +127,52 @@ public class ArrayAndStrings {
     }
 
     return count <= 1;
+  }
+
+  public static boolean oneEditAway(String string1, String string2) {
+
+    if (string1.length() == string2.length()) {
+      return oneEditReplace(string1, string2);
+    } else if (string1.length() + 1 == string2.length()) {
+      return oneEditInsert(string1, string2);
+    } else if (string1.length() - 1 == string2.length()) {
+      return oneEditInsert(string1, string2);
+    }
+
+    return false;
+  }
+
+  private static boolean oneEditInsert(String string1, String string2) {
+
+    int index1 = 0;
+    int index2 = 0;
+
+    while (index2 < string2.length() && index1 < string1.length()) {
+      if (string1.charAt(index1) != string2.charAt(index2)) {
+        if (index1 != index2) {
+          return false;
+        }
+        index2++;
+      } else {
+        index1++;
+        index2++;
+      }
+    }
+    return true;
+  }
+
+  private static boolean oneEditReplace(String string1, String string2) {
+
+    boolean foundDifference = false;
+
+    for (int i = 0; i < string1.length(); i++) {
+      if (string1.charAt(i) != string2.charAt(i)) {
+        if (foundDifference) {
+          return false;
+        }
+        foundDifference = true;
+      }
+    }
+    return true;
   }
 }
