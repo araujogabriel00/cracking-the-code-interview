@@ -1,12 +1,13 @@
 package com.cracking;
 
-public class ArrayAndStrings {
+import java.util.ArrayList;
+import java.util.List;
 
+public class ArrayAndStrings {
 
   public static void main(String[] args) {
 
-    System.out.println(oneEditAway("ble", "pale"));
-
+    stringCompression("aabcccccaaa");
   }
 
   public static boolean checkUniqueChar(String str) {
@@ -174,5 +175,29 @@ public class ArrayAndStrings {
       }
     }
     return true;
+  }
+
+  private static String stringCompression(String string) {
+
+    List<String> list = new ArrayList<>();
+
+    int count = 0;
+    int qtd = 0;
+
+    for (int i = 0; i < string.length(); ) {
+      for (int j = 1 + i; j < string.length(); j++) {
+        if (string.charAt(i) == string.charAt(j)) {
+          count++;
+          qtd = count + 1;
+          System.out.println(qtd);
+        }
+        else {
+          i++;
+        }
+      }
+
+    }
+
+    return string;
   }
 }
