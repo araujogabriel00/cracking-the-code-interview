@@ -7,7 +7,7 @@ public class ArrayAndStrings {
 
   public static void main(String[] args) {
 
-    stringCompression("aabcccccaaa");
+    System.out.println(compress("aabcccccaaa"));
   }
 
   public static boolean checkUniqueChar(String str) {
@@ -177,27 +177,42 @@ public class ArrayAndStrings {
     return true;
   }
 
-  private static String stringCompression(String string) {
+  private static String compress(String str){
+    int finalLength = countCompress(str);
+    if (finalLength >= str.length()) return str;
 
-    List<String> list = new ArrayList<>();
+    StringBuilder compressed = new StringBuilder(finalLength);
 
-    int count = 0;
-    int qtd = 0;
+    int countConsecutive = 0;
 
-    for (int i = 0; i < string.length(); ) {
-      for (int j = 1 + i; j < string.length(); j++) {
-        if (string.charAt(i) == string.charAt(j)) {
-          count++;
-          qtd = count + 1;
-          System.out.println(qtd);
-        }
-        else {
-          i++;
-        }
+    for (int i = 0; i < str.length(); i++) {
+      countConsecutive++;
+
+      if (i + 1 >= str.length() ||str.charAt(i) != str.charAt(i+1)){
+        compressed.append(str.charAt(i));
+        compressed.append(countConsecutive);
+        countConsecutive = 0;
       }
-
     }
 
-    return string;
+    return compressed.toString();
   }
+
+  private static int countCompress(String str) {
+
+    int compressedLenght = 0;
+    int countConsecutive = 0;
+
+    for (int i = 0; i < str.length(); i++) {
+      countConsecutive++;
+
+      if (i + 1 >= str.length() ||str.charAt(i) != str.charAt(i+1)){
+        compressedLenght += 1 + String.valueOf(countConsecutive).length();
+        countConsecutive = 0;
+      }
+    }
+    return compressedLenght;
+  }
+
+
 }
