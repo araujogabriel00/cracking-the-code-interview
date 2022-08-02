@@ -3,7 +3,7 @@ package com.cracking;
 public class ArrayAndStrings {
 
   public static void main(String[] args) {
-    int [][] matrix = new int [2][2];
+    int[][] matrix = new int[2][2];
     rotate(matrix);
   }
 
