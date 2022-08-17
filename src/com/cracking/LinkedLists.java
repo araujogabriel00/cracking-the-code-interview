@@ -3,6 +3,7 @@ package com.cracking;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class LinkedLists {
@@ -30,5 +31,9 @@ public class LinkedLists {
     System.out.println(hashSet);
   }
 
+  public static long aVeryBigSum(List<Long> ar) {
 
+
+
+  }
 }
